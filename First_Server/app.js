@@ -3,9 +3,7 @@ const http = require('http');// use to start server
 const fs = require('fs');//manage file (file System)
 const port = 3000; // Port on which server runs
 
-//modules in Node JS and Require() keyword
-var counter = require('./count');
-console.log(counter(['shug','dag','gap']));
+
 
 const server = http.createServer(function(req,res){
     res.writeHead(200, { 'content-type' : 'text/html' });//status code with successfull execute the content from html
@@ -22,7 +20,7 @@ const server = http.createServer(function(req,res){
 
 server.listen(port, function(error){ // Listening port 3000 (running server)
     if(error) {
-        console.log("Someyhing went wrong", error);
+        console.log("Something went wrong", error);
     } else {
         console.log("Server is listening on port " + port)
     }

@@ -2,12 +2,24 @@
   "name": "celebal_nodejs",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/anandcomp22/Celebal-Summer-Internship#readme",
+  "bugs": {
+    "url": "https://github.com/anandcomp22/Celebal-Summer-Internship/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anandcomp22/Celebal-Summer-Internship.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {}
 }
