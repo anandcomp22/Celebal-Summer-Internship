@@ -21,8 +21,8 @@ function processRequest(response) {
         console.log('Response Received')
         return processRequest(response)
     })
-    .then(processRequest => {
-        console.log(processRequest)
+    .then(processResponse => {
+        console.log(processResponse)
     })
     .catch(err => {
         console.log(err)
