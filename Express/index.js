@@ -4,10 +4,13 @@ const port = 4000;
 
 const userRoute = require('./routes/user');
 const commentRoute = require('./routes/comments');
+const login = require('./routes/app');
 
-app.use('/user', userRoute);
-app.use('/comment', commentRoute);
+/*app.use('/user', userRoute);
+app.use('/comment', commentRoute)*/
 
-app.listen(4000, () => {
+app.use('/',login);
+
+app.listen(port,() => {
     console.log("listening to port 4000");
 });
