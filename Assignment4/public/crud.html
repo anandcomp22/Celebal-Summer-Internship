@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User CRUD Interface</title>
+</head>
+<body>
+    <h1>User Management (Protected)</h1>
+
+      <button onclick="logout()" style="float:right;">Logout</button>
+
+    <h3>Create User</h3>
+    <input type="text" id="createName" placceholderr="Enter name">
+    <button onclick="createUser()">Create</button>
+
+    <h3>Get All Users</h3>
+    <button onclick="getUsers()">Get Users</button>
+    <pre id="userList"></pre>
+
+    <h3>Update User</h3>
+    <input type="number" id="updateId" placeholder="User ID">
+    <input type="text" id="updateName" placeholder="New name">
+    <button onclick="updateUser()">Update</button>
+
+    <h3>Delete User</h3>
+    <input type="number" id="deleteId" placeholder="User ID">
+    <button onclick="deleteUser()">Delete</button>
+
+    <p id="message" style="color: green;"></p>
+    <p id="error" style="color: red;"></p>
+
+    <script>
+        const token = sessionStorage.getItem('authToken');
+
+        if(!token) {
+            alert("You must log in first");
+            window.location.href = "/login.html";
+        }
+
+        function showMessage(msg, isError = false) {
+            document.getElementById('message').innerText = isError ? '' : msg;
+            document.getElementById('error').innerText = isError ? msg : '';
+        }
+
+        function createUser(){
+            const name = document.getElementById('createName').value;
+            fetch('/users', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify({ name })
+            })
+            .then(res => res.json())
+            .then(data => showMessage('User Created: ' + JSON.stringify(data)))
+            .catch(err => showMessage(err.message, true));
+        }
+
+        function getUsers() {
+            fetch('/users', {
+            method: 'GET',
+            headers: {
+                'Authorization': token
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('userList').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(err => showMessage(err.message, true));
+        }
+
+        function updateUser() {
+            const id = document.getElementById('updateId').value;
+            const name = document.getElementById('updateName').value;
+
+            fetch(`/users/${id}`, {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+                },
+                body: JSON.stringify({ name })
+            })
+            .then(res => res.json())
+            .then(data => showMessage('User Updated: ' + JSON.stringify(data)))
+            .catch(err => showMessage(err.message, true));
+        }
+
+        function deleteUser() {
+            const id = document.getElementById('deleteId').value;
+
+            fetch(`/users/${id}`, {
+                method: 'DELETE',
+                headers: {
+                'Authorization': token
+                }
+            })
+            .then(res => res.json())
+            .then(data => showMessage('User Deleted: ' + JSON.stringify(data)))
+            .catch(err => showMessage(err.message, true));
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = '/login.html';
+        }
+        
+    </script>
+</body>
+</html>
