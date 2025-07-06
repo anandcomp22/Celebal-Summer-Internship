@@ -8,6 +8,4 @@ const mysqlPool = mysql.createPool({
     database: 'employee_db'
 })
 
-mysqlPool.query("SELECT 1")
-.then(data => console.log('db connteced successfully'))
-.catch(err => console.log('db connection failed. \n' + err))
+module.exports = mysqlPool;
