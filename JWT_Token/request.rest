@@ -1,10 +1,9 @@
 GET http://localhost:3000/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3NTI2ODI3OTcsImV4cCI6MTc1MjY4Mjg1N30.y4VdSyYSzMaZGDIeGwxgvsHHhlDwA7kjz1Ng1Wkqras
 
+
+
 ###
-
-
-
 DELETE http://localhost:4000/logout
 Content-Type: application/json
 {
@@ -13,10 +12,8 @@ Content-Type: application/json
 }
 
 
+
 ###
-
-
-
 POST http://localhost:4000/login
 Content-Type: application/json
 
@@ -24,9 +21,9 @@ Content-Type: application/json
     "username": "admin"
 }
 
+
+
 ###
-
-
 POST http://localhost:4000/token
 Content-Type: application/json
 
